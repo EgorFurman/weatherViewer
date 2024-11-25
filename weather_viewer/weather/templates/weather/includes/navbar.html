@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="container my-4">
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-1">
+        <div class="container-fluid">
+            <!-- Логотип -->
+            <a class="navbar-brand p-0 m-0 d-flex align-items-start" href="#" style="width: 120px; height: 100px; margin: -10px -10px 0 -10px;">
+                <img src="{% static 'weather/images/logo.png' %}" alt="Логотип" class="img-fluid">
+            </a>
+
+            <!-- Кнопка "Домой" и элементы навигации справа -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Левая часть навигации (кнопка "Домой") -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link home-link active fs-5" aria-current="page" href="{% url 'home' %}">Главная</a>
+                    </li>
+                </ul>
+
+                <!-- Правая часть навигации (Имя пользователя и кнопка "Выйти") -->
+                <div class="d-flex align-items-center">
+                    <span class="navbar-text me-3 fs-5">{{ user.username }}</span>
+                    <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm fs-5">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Поле для ввода (поиск) под навигацией -->
+    <div class="container mt-4">
+        <form action="{% url 'search' %}" method="get" class="d-flex align-items-center">
+            <input class="form-control me-3 fs-5" type="search" name="location"
+                placeholder="Введите название населенного пункта" aria-label="Искать">
+            <button class="btn btn-outline-success fs-5" type="submit">Искать</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class=class="input-group-mb-4">
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <label for="search">Локация:</label>
+            <input type="text" id="search" name="search">   
+            {{ form.as_p }}
+        
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-outline-success">Искать</button>
+            </div>
+        </form>
+    </div> -->
+</div>

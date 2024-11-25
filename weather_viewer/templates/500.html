@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<main class="container">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">500: Внутренняя ошибка сервера</h4>
+        <p>Произошла ошибка на сервере. Пожалуйста, попробуйте снова позже.</p>
+        <hr>
+        <p class="mb-0">Если ошибка сохраняется, свяжитесь с технической поддержкой.</p>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</main>
+{% endblock %}

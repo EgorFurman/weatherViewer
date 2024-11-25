@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<main class="container">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">404: Страница не найдена</h4>
+        <p>Запрашиваемая вами страница не существует или была удалена.</p>
+        <hr>
+        <p class="mb-0">Пожалуйста, проверьте правильность введенного URL или вернитесь на главную страницу.</p>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main class="container">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">400: Неверный запрос</h4>
+        <p>Запрос не может быть выполнен из-за синтаксической ошибки. Пожалуйста, проверьте ваш запрос и попробуйте снова.</p>
+        <hr>
+        <p class="mb-0">Если ошибка сохраняется, свяжитесь с технической поддержкой.</p>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</main>
+{% endblock %}

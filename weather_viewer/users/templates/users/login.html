@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+        <div class="card p-4 shadow-sm" style="max-width: 400px; width: 100%;">
+            <h2 class="text-center mb-4">Войти</h2>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Вывод общих ошибок формы -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <!-- Поля формы -->
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+
+                        <!-- Ошибки для поля -->
+                        {% if field.errors %}
+                            <ul class="text-danger mb-0">
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </div>
+                <p class="text-center mb-0">
+                    Еще нет аккаунта? <a href="{% url 'users:registration' %}">Зарегистрируйтесь здесь</a>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

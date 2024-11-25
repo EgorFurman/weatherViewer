@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<main class="container">
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">403: Доступ запрещен</h4>
+        <p>У вас нет прав для доступа к этой странице. Пожалуйста, убедитесь, что у вас есть соответствующие разрешения.</p>
+        <hr>
+        <p class="mb-0">Если вы считаете, что это ошибка, обратитесь к администратору сайта.</p>
+    </div>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</main>
+{% endblock %}

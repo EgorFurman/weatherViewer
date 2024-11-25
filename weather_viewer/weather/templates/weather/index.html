@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+{% include "weather/includes/navbar.html"%}
+{% endblock %}
+
+{% block content %}
+
+<main class="container">
+    {% if messages %}
+    <div class="alert-container mb-4">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <!-- <div class="row g-3"> -->
+    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        {% for location in locations %}
+        <div class="col-md-3">
+            <div class="card text-left mb-3 h-100" style="width: 18rem;">
+                <img src="{% static 'weather/images/' %}{{ location.weather.icon_id }}.svg" class="card-img-top img-fluid" alt="Иконка погоды">
+                <div class="card-body">
+                    <form method="post" name="delete">
+                        {% csrf_token %}
+                        <input type="hidden" name="latitude" value="{{ location.latitude }}">
+                        <input type="hidden" name="longitude" value="{{ location.longitude }}">
+                        <button type="submit" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close">
+                        </button>
+                    </form>
+                    <h3 class="card-title">{{location.weather.temperature}}°C</h3>
+                    <!-- <p class="fw-semibold mb-1">{{ weather.location.name }}, {{ weather.location.country }}</p> -->
+                    <h5 class="card-subtitle mb-4">{{ location.name }}, {{ location.country }}</h5>
+                    <p class="card-text mb-1">Ощущается как {{ location.weather.temperature_feels_like }}°C.
+                        {{location.weather.weather_desc }}</p>
+                    <p class="card-text mb-1">Скорость ветра: {{ location.weather.wind_speed }}м/c</p>
+                    <p class="card-text">Влажность: {{ location.weather.humidity }}%</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            <!-- Кнопка "Предыдущая страница" -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                {% if page_obj.has_previous %}
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Назад</a>
+                {% else %}
+                <a class="page-link" tabindex="-1">Назад</a>
+                {% endif %}
+            </li>
+
+            <!-- Номера страниц -->
+            {% for num in paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            <!-- Кнопка "Следующая страница" -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Вперед</a>
+                {% else %}
+                <a class="page-link">Вперед</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+</main>
+{% endblock %}
