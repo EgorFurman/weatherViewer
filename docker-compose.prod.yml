@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: django_app
+    image: django_app
+    depends_on:
+      - db
+    volumes:
+      - static_volume:/app/static
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    command: >
+      - bash -c "./manage.py migrate && gunicorn --bind 0.0.0.8000 weather_viewer.wsgi:application"
+
+  nginx:
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./docker/nginx/
+    container_name: weather_nginx
+    image: weather_nginx
+    volumes:
+      - static_volume:/app/static
+    depends_on:
+      - web
+    ports:
+      - "${NGINX_EXTERNAL_PORT}:80"
+
+
+volumes:
+  static_volume:
+  postgres_data:

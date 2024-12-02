@@ -1,0 +1,12 @@
+.home-link {
+    color: #000;
+    font-size: 1rem;
+    letter-spacing: 0; /* Без межбуквенного расстояния */
+    transition: color 0.3s ease, font-size 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.home-link:hover {
+    color: #555;
+    font-size: 1.05rem;
+    letter-spacing: 1px; /* Слегка увеличенное межбуквенное расстояние */
+}
