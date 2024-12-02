@@ -25,8 +25,8 @@ class OpenWeatherService:
     }
 
     _OPEN_WEATHER_API_ENDPOINTS = {
-        'get_location_by_name': 'https://api.openweathermap.org/geo/1.0/direct',
-        'get_weather_by_coords': 'https://api.openweathermap.org/data/2.5/weather'
+        'get_location_by_name': 'https://ru.api.openweathermap.org/geo/1.0/direct',
+        'get_weather_by_coords': 'https://ru.api.openweathermap.org/data/2.5/weather'
     }
 
     API_KEY = WEATHER_API_KEY
