@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Location',
                 'verbose_name_plural': 'Locations',
                 'ordering': ['-id'],
-                'unique_together': {('name', 'user')},
+                'unique_together': {('latitude', 'longitude', 'user')},
             },
         ),
     ]

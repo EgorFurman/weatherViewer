@@ -13,7 +13,7 @@ class Location(models.Model):
         return f"{self.name} ({self.latitude}, {self.longitude})"
 
     class Meta:
-        unique_together = (('name', 'user'),)
+        unique_together = (('latitude', 'longitude', 'user'),)
         verbose_name_plural = "Locations"
         verbose_name = "Location"
         ordering = ['-id']
