@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     volumes:
-      - static_volume:/app/static
+      - static_volume:/user/static
 
   nginx:
     build:
