@@ -28,7 +28,7 @@ services:
       context: ./docker/nginx/
     container_name: weather_nginx
     volumes:
-      - static_volume:/app/static
+      - static_volume:/user/static
     depends_on:
       - web
     ports:

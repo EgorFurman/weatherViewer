@@ -10,15 +10,15 @@ RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
 # Обновляем pip
 RUN python -m pip install --upgrade pip
 
-# Создаем пользователя
-RUN adduser -D -s user && chmod 777 /opt /run
+RUN adduser -D user
+RUN mkdir -p /opt /run && chmod 777 /opt /run
 
 # Создаем рабочую директорию
-WORKDIR /app
+WORKDIR /user
 
 # Переключаемся на созданного пользователя
-RUN mkdir /app/static
-RUN chown -R user:user /app && chmod -R 755 /app
+RUN mkdir /user/static
+RUN chown -R user:user /user && chmod -R 755 /user
 
 # Копируем и устанавливаем зависимости Python
 COPY --chown=user:user requirements.txt .
