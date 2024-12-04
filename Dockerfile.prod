@@ -1,24 +1,27 @@
 FROM python:3.12-alpine
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Устанавливаем переменные окружения для Python
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
+# Устанавливаем зависимости
 RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
+
+# Обновляем pip
 RUN python -m pip install --upgrade pip
 
-RUN useradd -m myuser
+# Создаем пользователя
+RUN adduser -D myuser
 
 # Создаем рабочую директорию
 WORKDIR /app
 
-RUN chown myuser:myuser /app
-
 # Переключаемся на созданного пользователя
 USER myuser
 
+# Копируем и устанавливаем зависимости Python
 COPY --chown=myuser:myuser requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Копируем приложение
 COPY --chown=myuser:myuser ./weather_viewer .
-
-# CMD ["gunicorn", "--bind", "0.0.0.0:8001", "weather_viewer.wsgi:application"]
