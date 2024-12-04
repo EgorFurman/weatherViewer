@@ -16,8 +16,7 @@ RUN mkdir -p /opt /run && chmod 777 /opt /run
 WORKDIR /user
 
 # Переключаемся на созданного пользователя
-RUN mkdir /user/static
-RUN chown -R user:user /user && chmod -R 755 /user
+RUN mkdir -p /user/static && chown -R user:user /user && chmod -R 755 /user
 
 # Копируем и устанавливаем зависимости Python
 COPY --chown=user:user requirements.txt .
