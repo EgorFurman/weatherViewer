@@ -11,7 +11,7 @@ RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
 RUN python -m pip install --upgrade pip
 
 # Создаем пользователя
-RUN adduser -D user
+RUN adduser -D -s user && chmod 777 /opt /run
 
 # Создаем рабочую директорию
 WORKDIR /app
