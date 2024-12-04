@@ -11,19 +11,19 @@ RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
 RUN python -m pip install --upgrade pip
 
 # Создаем пользователя
-RUN adduser -D myuser
+RUN adduser -D user
 
 # Создаем рабочую директорию
 WORKDIR /app
 
 # Переключаемся на созданного пользователя
-
+RUN mkdir /app/static chown -R user:user /app %% chmod 755 /app
 
 # Копируем и устанавливаем зависимости Python
-COPY --chown=myuser:myuser requirements.txt .
+COPY --chown=user:user requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем приложение
-COPY --chown=myuser:myuser ./weather_viewer .
+COPY --chown=user:user ./weather_viewer .
 
-USER myuser
+USER user
