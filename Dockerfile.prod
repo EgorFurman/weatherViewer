@@ -6,15 +6,19 @@ ENV PYTHONUNBUFFERED=1
 RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
 RUN python -m pip install --upgrade pip
 
-# RUN useradd -rms /bin/bash user && chmod 777 /opn/run
+RUN useradd -m myuser
 
+# Создаем рабочую директорию
 WORKDIR /app
 
-# RUN mkdir /app/static && mkdir /app/media %% chown -R app:app /user && chmod 755 /user
+RUN chown myuser:myuser /app
 
-COPY requirements.txt .
+# Переключаемся на созданного пользователя
+USER myuser
+
+COPY --chown=myuser:myuser requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY /weather_viewer .
+COPY --chown=myuser:myuser ./weather_viewer .
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8001", "weather_viewer.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8001", "weather_viewer.wsgi:application"]
