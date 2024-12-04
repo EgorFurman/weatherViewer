@@ -4,7 +4,6 @@ FROM python:3.12-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Устанавливаем зависимости
 RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
 
 # Обновляем pip
@@ -18,7 +17,7 @@ WORKDIR /user
 
 # Переключаемся на созданного пользователя
 RUN mkdir /user/static
-RUN chown -R user:user /user && chmod -R 755 /user
+RUN chown -R user:user /user && chmod 755 /user
 
 # Копируем и устанавливаем зависимости Python
 COPY --chown=user:user requirements.txt .
