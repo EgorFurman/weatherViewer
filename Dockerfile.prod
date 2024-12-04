@@ -18,7 +18,7 @@ WORKDIR /app
 
 # Переключаемся на созданного пользователя
 RUN mkdir /app/static
-RUN chown -R user:user /app %% chmod -R 755 /app
+RUN chown -R user:user /app && chmod -R 755 /app
 
 # Копируем и устанавливаем зависимости Python
 COPY --chown=user:user requirements.txt .
