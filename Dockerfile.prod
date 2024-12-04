@@ -1,8 +1,8 @@
 FROM python:3.12-alpine
 
 # Устанавливаем переменные окружения для Python
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Устанавливаем зависимости
 RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev
@@ -17,7 +17,7 @@ RUN adduser -D myuser
 WORKDIR /app
 
 # Переключаемся на созданного пользователя
-USER myuser
+
 
 # Копируем и устанавливаем зависимости Python
 COPY --chown=myuser:myuser requirements.txt .
@@ -25,3 +25,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем приложение
 COPY --chown=myuser:myuser ./weather_viewer .
+
+USER myuser
