@@ -16,17 +16,16 @@ services:
       - .env
     expose:
       - 8000
+    depends_on:
+      - db
+    volumes:
+      - static_volume:/user/static
     command: >
       command: >
             sh -c "python manage.py collectstatic --noinput &&
                    chmod -R 755 /user/static &&
                    python manage.py migrate &&
                    gunicorn weather_viewer.wsgi:application --bind 0.0.0.0:8000"
-    depends_on:
-      - db
-    volumes:
-      - static_volume:/user/static
-
   nginx:
     build:
       context: ./docker/nginx/
