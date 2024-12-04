@@ -21,11 +21,10 @@ services:
     volumes:
       - static_volume:/user/static
     command: >
-      command: >
-            sh -c "python manage.py collectstatic --noinput &&
-                   chmod -R 755 /user/static &&
-                   python manage.py migrate &&
-                   gunicorn weather_viewer.wsgi:application --bind 0.0.0.0:8000"
+          sh -c "python manage.py collectstatic --noinput &&
+                 chmod -R 755 /user/static &&
+                 python manage.py migrate &&
+                 gunicorn weather_viewer.wsgi:application --bind 0.0.0.0:8000"
   nginx:
     build:
       context: ./docker/nginx/
