@@ -49,16 +49,16 @@
 ## Интерфейс
 ### **Авторизация**
 Адрес - `/users/login`. Страница представляет собой форму для авторизации пользователя.
-[![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/login.png)]
+![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/login.png)
 ### **Регистрация**
 Адрес - `/users/register`. Страница представляет собой форму для регистрации пользователя.
-[![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/register.png)]
+![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/register.png)
 ### **Главная страница**
 Адрес - `/`. Страница представляет собой главную страницу приложения.
-[![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/main.png)]
+![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/main.png)
 ### **Страница результатов поиска**
 Адрес - `/search`. Представляет собой коллекцию из найденных по имени населенных пунктов. GET параметр `location` содержит имя локации.
-[![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/search.png)]
+![auth](https://github.com/EgorFurman/weatherViewer/blob/master/docs/search.png)
 
 ## Тесты
 В качестве фреймворка для тестирования был использован unittest. Юнит и интеграционным тестами был покрыт основной функционал приложения. Основные тест-кейсы:
