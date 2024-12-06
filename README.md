@@ -20,7 +20,7 @@
 	```
 		WEATHER_API_KEY=YOUR_OPEN_WEATHER_API_KEY # Уникальный ключ OpenWeatherAPI
 		
-		# Конфигурация базы данных
+		# Конфигурация Postgres
 		POSTGRES_DB=weather # Имя БД
 		POSTGRES_USER=django_user # Имя пользователя БД
 		POSTGRES_PASSWORD=1234 # Пароль пользователя БД
@@ -32,7 +32,7 @@
 		DJANGO_DEBUG=False # Режим отладки(False - выключен, True - включен)
 		DJANGO_ALLOWED_HOSTS=* # Список доменов или айпишников, которые может обслуживать приложение
 		
-		# Настройки Nginx
+		# Конфигурация Nginx
 		NGINX_EXTERNAL_PORT=80 # Порт для подключения к приложению
 	```
 
